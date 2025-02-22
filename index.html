@@ -1,201 +1,145 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My Valentine? ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
+    <title>Happy 41st Birthday Kea! ⚓</title>
     <style>
-        * {
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"><text font-size="24" fill="red">❤️</text></svg>'), auto;
-        }
-
-        body {
-            background: linear-gradient(45deg, #ff7eb9, #ff758c);
-            height: 100vh;
+            background: linear-gradient(to bottom right, #000080, #000022);
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            font-family: 'Pacifico', cursive;
-            overflow: hidden;
+            text-align: center;
+            overflow-x: hidden;
         }
 
         .container {
-            text-align: center;
             padding: 2rem;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
-            position: relative;
-            transform: scale(0);
-            animation: popIn 1s forwards;
+            max-width: 800px;
         }
 
         h1 {
-            color: #9f17a8;
             font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: float 3s ease-in-out infinite;
         }
 
-        .heart-btn {
-            background: none;
-            border: none;
-            font-size: 4rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            animation: float 2s ease-in-out infinite;
+        .message-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 2px solid #gold;
         }
 
-        .heart-btn:hover {
-            transform: scale(1.2);
-        }
-
-        .message {
-            display: none;
-            margin-top: 2rem;
-            font-size: 1.5rem;
-            color: #d32f2f;
-        }
-
-        .hearts {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .heart {
-            position: absolute;
-            font-size: 1.5rem;
-            animation: floatUp 3s linear forwards;
-        }
-
-        @keyframes popIn {
-            to {
-                transform: scale(1);
-            }
+        .rotating-messages {
+            font-style: italic;
+            min-height: 100px;
+            opacity: 0;
+            animation: fadeInOut 12s infinite;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
+            0% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
 
-        @keyframes floatUp {
-            0% { opacity: 1; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(-100vh) scale(0.5); }
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            20%, 80% { opacity: 1; }
         }
 
-        .confetti {
+        .stars {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+        }
+
+        .star {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #ff4081;
-            animation: confettiFall 3s linear forwards;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 1.5s infinite;
         }
 
-        @keyframes confettiFall {
-            0% { transform: translateY(-100vh) rotate(0deg); }
-            100% { transform: translateY(100vh) rotate(360deg); }
+        @keyframes twinkle {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
         }
 
-        #responseButtons {
-            display: none;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .response-btn {
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        #yesBtn {
-            background: #4CAF50;
-            color: white;
-        }
-
-        #noBtn {
-            background: #f44336;
-            color: white;
-        }
-
-        #noBtn:hover {
-            transform: scale(1.1);
-            transition: transform 0.1s ease;
-        }
     </style>
 </head>
 <body>
+    <div class="stars" id="stars"></div>
+    
     <div class="container">
-        <h1>Will You Be My Valentine? 🌹</h1>
-        <button class="heart-btn" onclick="showMessage()">❤️</button>
-        <div class="message" id="mainMessage">
-            You make my heart skip a beat! 💖<br>
-            Let's create beautiful memories together!
-            <div id="responseButtons">
-                <button class="response-btn" id="yesBtn" onclick="celebrate()">Yes! Absolutely! 🎉</button>
-                <button class="response-btn" id="noBtn" onmouseover="dodgeButton()">Umm... Maybe? 😅</button>
+        <h1>⚓ Happy 41st Birthday Kea! ⚓</h1>
+        
+        <div class="message-box">
+            <p>Dear Kea,</p>
+            <p>As you celebrate this special milestone, we want to acknowledge the incredible journey you've navigated so far.</p>
+            
+            <div class="rotating-messages">
+                <!-- Messages will rotate automatically -->
             </div>
+
+            <p>Your dedication has been the compass guiding your success, and your perseverance through challenges inspires us all.</p>
+            <p>May this year bring you fair winds and following seas as you continue to chart your remarkable course!</p>
         </div>
-        <div class="hearts" id="heartsContainer"></div>
     </div>
 
     <script>
-        function showMessage() {
-            document.getElementById('mainMessage').style.display = 'block';
-            document.getElementById('responseButtons').style.display = 'flex';
-            createHearts(10);
-        }
+        // Rotating encouraging messages
+        const messages = [
+            "41 years of making waves and setting standards!",
+            "Your resilience in stormy seas is truly admirable.",
+            "Every challenge you've overcome has polished your brilliance.",
+            "The depth of your experience is matched only by your potential.",
+            "Keep navigating towards your dreams - new horizons await!",
+            "Your journey teaches us all about true dedication."
+        ];
 
-        function createHearts(count) {
-            const container = document.getElementById('heartsContainer');
-            for (let i = 0; i < count; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.innerHTML = '❤️';
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDelay = Math.random() * 2 + 's';
-                container.appendChild(heart);
-                
-                setTimeout(() => heart.remove(), 3000);
-            }
-        }
+        const messageContainer = document.querySelector('.rotating-messages');
+        let messageIndex = 0;
 
-        function dodgeButton() {
-            const noBtn = document.getElementById('noBtn');
-            noBtn.style.transform = `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)`;
-        }
-
-        function celebrate() {
-            document.body.style.background = 'linear-gradient(45deg, #ff758c, #ff7eb9)';
-            createConfetti(50);
+        function updateMessage() {
+            messageContainer.style.opacity = 0;
             setTimeout(() => {
-                alert("Yay! You've made me the happiest person! 💌 Let's make this Valentine's Day unforgettable!");
+                messageContainer.textContent = messages[messageIndex];
+                messageIndex = (messageIndex + 1) % messages.length;
+                messageContainer.style.opacity = 1;
             }, 1000);
         }
 
-        function createConfetti(count) {
-            for (let i = 0; i < count; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                document.body.appendChild(confetti);
-                
-                setTimeout(() => confetti.remove(), 3000);
+        setInterval(updateMessage, 6000);
+        updateMessage();
+
+        // Create animated stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 1.5 + 's';
+                starsContainer.appendChild(star);
             }
         }
+
+        createStars();
     </script>
 </body>
 </html>
